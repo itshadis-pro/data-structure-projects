@@ -2,7 +2,7 @@
 
 Name: Hadi Almarzooq
 
-Run `make run` and copy the ratios from the last column. Replace each `____`.
+Run `make run` and copy the ratios from the last column.
 
 | n (pushes) | copies | copies / pushes |
 |---|---|---|
@@ -16,5 +16,3 @@ In one or two sentences, explain why copies / pushes stays below 2 for every n. 
 The copies/pushes ratio stays below 2 because we double the capacity during each growth phase. Copying N elments guaruantees exactly N 'free' pushes before the stack needs to grow again, ensuring the total number of copies never exceeds twice the number of pushes.
 
 // used AI to get help tutoring writing test cases and brainstorming this 2 sentences report. 
-
-____
