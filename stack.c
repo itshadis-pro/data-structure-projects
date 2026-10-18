@@ -81,43 +81,81 @@ bool stack_push(Stack *s, int x) {
     free(s->data);
     s->data = new_data;
 
+    // 1. Add the old capacity directly (no brackets needed)
     s->copies = s->copies + s->capacity;
     s->capacity = s->capacity * 2;
     }
 
+    // the growth phase is done
 
-    return false;
+    // 2. store the new value 'x' at the next available slot in the array
+
+    s->data[s->size] = x;
+
+    // 3. Increase the size counter by 1
+    s->size = s->size + 1;
+
+    return true;
 }
 
 bool stack_pop(Stack *s, int *out) {
     /* TODO: if empty, return false without touching *out.
      * Otherwise store the top element in *out, remove it, return true. */
-    (void)s;
-    (void)out;
-    return false;
+
+     // 1. Apply the empty-stack rule:check if size is 0
+     if ( s == NULL || s->size == 0){
+     
+        return false;
+     }
+
+    //Decrease the size counter 
+    s->size = s->size - 1;
+
+    // 2. Store the top element in *out, remove it, return true.
+
+    *out = s->data[s->size];
+
+    return true;
 }
 
 bool stack_peek(const Stack *s, int *out) {
     /* TODO: like stack_pop, but leave the element on the stack. */
-    (void)s;
-    (void)out;
-    return false;
+
+    // 1. Apply the empty stack rule 
+    if (s == NULL || s->size == 0){
+        return false;
+    }
+
+    // 2. Store the top element *out on the stack without changing the size counter. 
+    /// (if there are 5 items, the top one is at index 4)
+
+    *out = s->data[s->size - 1];
+
+    return true;
 }
 
 int stack_size(const Stack *s) {
-    /* TODO */
-    (void)s;
-    return -1;
+    /* TODO: return the number of element*/
+
+    if (s == NULL){
+        return 0;
+    }
+    return s->size;
 }
 
 bool stack_is_empty(const Stack *s) {
-    /* TODO */
-    (void)s;
-    return false;
+    /* TODO: return true when size = 0 */
+    if (s == NULL){
+        return true;
+    }
+    return s->size == 0;    
 }
 
 long stack_copies(const Stack *s) {
-    /* TODO */
-    (void)s;
-    return -1;
+    /* TODO: return the total number of element copies */
+    if (s == NULL){
+        return 0;
+    }
+
+    return s->copies;
 }
